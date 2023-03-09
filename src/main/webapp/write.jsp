@@ -6,7 +6,6 @@
 <head>
     <meta charset="UTF-8">
     <title>게시글 작성</title>
-    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <h1>게시글 작성</h1>

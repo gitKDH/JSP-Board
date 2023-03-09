@@ -14,7 +14,7 @@
 <%
     request.setCharacterEncoding("UTF-8");
 
-    String url = "jdbc:mysql://localhost:3306/game?useSSL=false&serverTimezone=UTC";
+    String url = "jdbc:mysql://127.0.0.1:3306/game?useSSL=false&serverTimezone=UTC";
     String id = "root";
     String pw = "12345";
 

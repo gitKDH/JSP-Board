@@ -18,6 +18,9 @@
         Context initContext = new InitialContext();
         Context envContext = (Context)initContext.lookup("java:/comp/env");
         DataSource ds = (DataSource)envContext.lookup("jdbc/TestDB");
+
+        Class.forName("com.mysql.jdbc.Driver");
+
         Connection conn = ds.getConnection();
         Statement stmt = conn.createStatement();
         String sql = "SELECT * FROM board ORDER BY num DESC";

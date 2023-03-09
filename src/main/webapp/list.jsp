@@ -12,7 +12,7 @@
 <hr>
 <%
     // 데이터베이스 연결 설정
-    String url = "jdbc:mysql://localhost:3306/game?useUnicode=true&characterEncoding=utf8";
+    String url = "jdbc:mysql://127.0.0.1:3306/game?useUnicode=true&characterEncoding=utf8";
     String id = "root";
     String pw = "12345";
 
