@@ -13,7 +13,7 @@
 
 <%
     request.setCharacterEncoding("UTF-8");
-
+i
     String url = "jdbc:mysql://localhost:3306/game";
     String id = "root";
     String pw = "12345";

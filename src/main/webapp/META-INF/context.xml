@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-    <ResourceLink global="jdbc/game" name="jdbc/game" type="javax.sql.DataSource"/>
+    <ResourceLink global="jdbc/game" name="game" type="javax.sql.DataSource"/>
     <Resource name="jdbc/game" auth="Container" type="javax.sql.DataSource"
               maxActive="100" maxIdle="30" maxWait="10000"
               username="root" password="12345"

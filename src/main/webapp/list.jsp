@@ -15,29 +15,31 @@
         <th>제목</th>
         <th>작성자</th>
         <th>작성일자</th>
+        <th>내용</th>
     </tr>
     <%
         try {
             Context initContext = new InitialContext();
             Context envContext = (Context)initContext.lookup("java:/comp/env");
-            DataSource ds = (DataSource)envContext.lookup("jdbc/game");
+            DataSource DBConnUtils = (DataSource)envContext.lookup("jdbc/game");
 
-            Connection conn = ds.getConnection();
+            Connection conn = DBConnUtils.getConnection();
             Statement stmt = conn.createStatement();
             String sql = "SELECT * FROM board ORDER BY num DESC";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                int idx = rs.getInt("num");
+                int num = rs.getInt("num");
                 String title = rs.getString("title");
                 String writer = rs.getString("writer");
                 String content = rs.getString("content");
                 Date writeDate = rs.getDate("regdate");
     %>
     <tr>
-        <td><%= idx %></td>
-        <td><%= title %></td>
+        <td><%= num %></td>
+        <td><a href="content.jsp?num=<%=num%>"><%= title %></a></td>
         <td><%= writer %></td>
         <td><%= writeDate %></td>
+        <td><%= content %></td>
     </tr>
     <%
             }
