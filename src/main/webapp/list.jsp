@@ -1,60 +1,54 @@
-<%@page import="java.sql.*"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page import="java.sql.*" %>
+<%@ page import="javax.naming.*" %>
+<%@ page import="javax.sql.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>게시글 목록</title>
+    <title>게시판</title>
 </head>
 <body>
-<h1>게시글 목록</h1>
-<hr>
-<%
-    // 데이터베이스 연결 설정
-    String url = "jdbc:mysql://127.0.0.1:3306/game?useUnicode=true&characterEncoding=utf8";
-    String id = "root";
-    String pw = "12345";
-
-    Connection conn = null;
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
-
-    try {
-        Class.forName("com.mysql.jdbc.Driver");
-        conn = DriverManager.getConnection(url, id, pw);
-
-        String sql = "SELECT * FROM board";
-        pstmt = conn.prepareStatement(sql);
-        rs = pstmt.executeQuery();
-
-        while (rs.next()) {
-            int idx = rs.getInt("num");
-            String title = rs.getString("title");
-            String writer = rs.getString("writer");
-            String content = rs.getString("content");
-            Date writeDate = rs.getDate("regdate");
-
-            // 게시글 목록 출력
-%>
-<%
-        }
-    } catch (ClassNotFoundException | SQLException e) {
-        e.printStackTrace();
-    } finally {
+<h2>게시판</h2>
+<table border="1">
+    <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일자</th>
+    </tr>
+    <%
         try {
-            if (rs != null)
-                rs.close();
-            if (pstmt != null)
-                pstmt.close();
-            if (conn != null)
-                conn.close();
-        } catch (SQLException e) {
+            Context initContext = new InitialContext();
+            Context envContext = (Context)initContext.lookup("java:/comp/env");
+            DataSource ds = (DataSource)envContext.lookup("jdbc/game");
+
+            Connection conn = ds.getConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT * FROM board ORDER BY num DESC";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int idx = rs.getInt("num");
+                String title = rs.getString("title");
+                String writer = rs.getString("writer");
+                String content = rs.getString("content");
+                Date writeDate = rs.getDate("regdate");
+    %>
+    <tr>
+        <td><%= idx %></td>
+        <td><%= title %></td>
+        <td><%= writer %></td>
+        <td><%= writeDate %></td>
+    </tr>
+    <%
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-%>
-
-<button onclick="location.href='write.jsp'">글 작성</button>
+    %>
+</table>
+<a href="write.jsp">글쓰기</a>
 </body>
 </html>
