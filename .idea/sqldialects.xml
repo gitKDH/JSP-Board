@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/main/webapp/content.jsp" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/delete.jsp" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/insert.jsp" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/insert_user.jsp" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/list.jsp" dialect="MySQL" />
