@@ -6,6 +6,7 @@
 <html>
 <head>
   <title>글 내용</title>
+  <link rel="stylesheet" href="content.css">
 </head>
 <body>
 <%

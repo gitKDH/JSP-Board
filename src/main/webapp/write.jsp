@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>게시글 작성</title>
+    <link rel="stylesheet" href="write.css">
 </head>
 <body>
 <h1>게시글 작성</h1>
@@ -23,12 +24,14 @@
         <label for="content">내용</label>
         <textarea name="content" id="content" required></textarea>
     </div>
+    <div class="btn-container">
     <button type="submit">작성 완료</button>
+    </div>
+    <div class="btn-container">
+        <a href="list.jsp" class="btn-cancel">취소</a>
+    </div>
 </form>
 
-<div class="btn-container">
-    <a href="list.jsp" class="btn-cancel">취소</a>
-</div>
 
 </body>
 </html>
