@@ -13,7 +13,7 @@
 
     Connection conn = DBConnUtils.getConnection();
     Statement stmt = conn.createStatement();
-    String sql = "DELETE FROM board WHERE num = " + num;
+    String sql = "DELETE FROM list WHERE num = " + num;
     stmt.executeUpdate(sql);
 
     stmt.close();

@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="content.css">
 </head>
 <body>
+<div class="container">
 <%
   String num = request.getParameter("num");
 
@@ -19,18 +20,20 @@
 
     Connection conn = DBConnUtils.getConnection();
     Statement stmt = conn.createStatement();
-    String sql = "SELECT * FROM board WHERE num = " + num;
+    String sql = "SELECT * FROM list WHERE num = " + num;
     ResultSet rs = stmt.executeQuery(sql);
     rs.next();
 
-    String title = rs.getString("title");
-    String writer = rs.getString("writer");
-    String content = rs.getString("content");
-    Date writeDate = rs.getDate("regdate");
+    String id = rs.getString("id");
+    String date = rs.getString("date");
+    String time = rs.getString("time");
+    String place = rs.getString("place");
+    String exercise = rs.getString("exercise");
 %>
-<h2><%= title %></h2>
-<p><%= writer %> | <%= writeDate %></p>
-<p><%= content %></p>
+<h2><%= id %></h2>
+<p><%= date %> | <%= time %></p>
+<p><%= place %></p>
+<p><%= exercise %></p>
 
 <form action="delete.jsp" method="post">
   <input type="hidden" name="num" value="<%= num %>">
@@ -47,5 +50,6 @@
     e.printStackTrace();
   }
 %>
+</div>
 </body>
 </html>

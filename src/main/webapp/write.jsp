@@ -13,16 +13,24 @@
 
 <form method="post" action="insert.jsp">
     <div>
-        <label for="title">제목</label>
-        <input type="text" name="title" id="title" required>
+        <label for="id">작성자</label>
+        <input type="text" name="id" id="id" required>
     </div>
     <div>
-        <label for="writer">작성자</label>
-        <input type="text" name="writer" id="writer" required>
+        <label for="date">날짜</label>
+        <input type="date" name="date" id="date" required>
     </div>
     <div>
-        <label for="content">내용</label>
-        <textarea name="content" id="content" required></textarea>
+        <label for="time">시간</label>
+        <input type="time" name="time" id="time" required>
+    </div>
+    <div>
+        <label for="place">장소</label>
+        <input type="text" name="place" id="place" required>
+    </div>
+    <div>
+        <label for="exercise">종목</label>
+        <input type="text" name="exercise" id="exercise" required>
     </div>
     <div class="btn-container">
     <button type="submit">작성 완료</button>

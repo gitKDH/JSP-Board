@@ -10,9 +10,11 @@
 <table border="1">
     <tr>
         <th>번호</th>
-        <th>제목</th>
         <th>작성자</th>
-        <th>작성일자</th>
+        <th>날짜</th>
+        <th>시간</th>
+        <th>장소</th>
+        <th>종목</th>
     </tr>
     <%
         Context initContext = null;
@@ -40,19 +42,23 @@
         try {
             conn = ds.getConnection();
             stmt = conn.createStatement();
-            String sql = "SELECT * FROM board ORDER BY num DESC";
+            String sql = "SELECT * FROM list ORDER BY num DESC";
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 int num = rs.getInt("num");
-                String title = rs.getString("title");
-                String writer = rs.getString("writer");
-                String date = rs.getString("regdate");
+                String id = rs.getString("id");
+                String date = rs.getString("date");
+                String time = rs.getString("time");
+                String place = rs.getString("place");
+                String exercise = rs.getString("exercise");
     %>
     <tr>
         <td><%=num%></td>
-        <td><%=title%></td>
-        <td><%=writer%></td>
+        <td><%=id%></td>
         <td><%=date%></td>
+        <td><%=time%></td>
+        <td><%=place%></td>
+        <td><%=exercise%></td>
     </tr>
     <%
             }

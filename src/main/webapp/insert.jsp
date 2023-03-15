@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <%@ page import="java.sql.*" %>
 
 <!DOCTYPE html>
@@ -24,12 +24,14 @@
         Class.forName("com.mysql.cj.jdbc.Driver");
         conn = DriverManager.getConnection(url, id, pw);
 
-        String sql = "INSERT INTO board (title, writer, content, regdate) VALUES (?, ?, ?, now())";
+        String sql = "INSERT INTO list (id, date, time, place, exercise) VALUES (?, ?, ?, ?, ?)";
 
         pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1, request.getParameter("title"));
-        pstmt.setString(2, request.getParameter("writer"));
-        pstmt.setString(3, request.getParameter("content"));
+        pstmt.setString(1, request.getParameter("id"));
+        pstmt.setString(2, request.getParameter("date"));
+        pstmt.setString(3, request.getParameter("time"));
+        pstmt.setString(4, request.getParameter("place"));
+        pstmt.setString(5, request.getParameter("exercise"));
 
         int result = pstmt.executeUpdate();
 
@@ -46,8 +48,14 @@
     } catch (Exception e) {
         e.printStackTrace();
     } finally {
-        try { pstmt.close(); } catch (Exception e) {}
-        try { conn.close(); } catch (Exception e) {}
+        try {
+            pstmt.close();
+        } catch (Exception e) {
+        }
+        try {
+            conn.close();
+        } catch (Exception e) {
+        }
     }
 %>
 
